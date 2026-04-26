@@ -2,27 +2,41 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Appel Pro - Lycée EL HADRI</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#1e1b4b">
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        @media print { .no-print { display: none !important; } }
+    </style>
 </head>
-<body class="bg-slate-100 min-h-screen p-4">
+<body class="bg-slate-100 min-h-screen">
 
-    <div class="max-w-5xl mx-auto bg-white shadow-2xl rounded-xl overflow-hidden">
-        <div class="bg-indigo-900 p-6 text-white text-center">
-            <h1 class="text-xl md:text-2xl font-bold uppercase tracking-widest leading-tight">Lycée EL HAJJ MOHAMED BEN HSSAIN EL HADRI</h1>
-            <p class="text-indigo-300 mt-2 text-xs font-semibold uppercase tracking-tighter">Registre Numérique des Absences</p>
+    <div id="loading-overlay" class="fixed inset-0 bg-indigo-900/40 z-50 flex items-center justify-center hidden">
+        <div class="bg-white p-5 rounded-2xl shadow-2xl flex flex-col items-center">
+            <div class="animate-spin rounded-full h-10 w-10 border-b-2 border-indigo-900 mb-3"></div>
+            <p class="text-indigo-900 font-bold text-[10px] uppercase">Synchronisation Cloud...</p>
+        </div>
+    </div>
+
+    <div class="max-w-4xl mx-auto bg-white min-h-screen shadow-xl">
+        <div class="bg-indigo-900 p-6 text-white text-center shadow-lg">
+            <h1 class="text-lg font-black uppercase tracking-tighter">Lycée EL HADRI</h1>
+            <p class="text-[9px] font-bold text-indigo-300 uppercase tracking-widest mt-1">Registre Numérique des Absences</p>
         </div>
 
-        <div class="p-6">
-            <div class="mb-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 bg-indigo-50 p-5 rounded-lg border border-indigo-100 shadow-sm no-print">
+        <div class="p-4 bg-indigo-50/50 border-b border-indigo-100 no-print">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
                 <div>
-                    <label class="block text-[10px] font-black text-indigo-900 mb-1 uppercase">Date :</label>
-                    <input type="date" id="date-select" onchange="changerContexte()" class="w-full p-2 rounded-md border-indigo-200 font-bold text-indigo-800 text-sm">
+                    <label class="block text-[9px] font-black text-indigo-400 uppercase mb-1">Date</label>
+                    <input type="date" id="date-select" onchange="changerContexte()" class="w-full p-2.5 rounded-xl border-none shadow-sm font-bold text-indigo-900 text-xs">
                 </div>
                 <div>
-                    <label class="block text-[10px] font-black text-indigo-900 mb-1 uppercase">Classe :</label>
-                    <select id="classe-select" onchange="changerContexte()" class="w-full p-2 rounded-md border-indigo-200 font-bold text-indigo-800 text-sm">
+                    <label class="block text-[9px] font-black text-indigo-400 uppercase mb-1">Classe</label>
+                    <select id="classe-select" onchange="changerContexte()" class="w-full p-2.5 rounded-xl border-none shadow-sm font-bold text-indigo-900 text-xs">
                         <option value="2 BAC SVT">2 BAC SVT</option>
                         <option value="2 BAC PC">2 BAC PC</option>
                         <option value="2BAC SPC FR">2BAC SPC FR</option>
@@ -31,35 +45,8 @@
                     </select>
                 </div>
                 <div>
-                    <label class="block text-[10px] font-black text-indigo-900 mb-1 uppercase">Matière :</label>
-                    <select id="matiere-select" onchange="changerContexte()" class="w-full p-2 rounded-md border-indigo-200 font-bold text-indigo-800 text-sm">
-                        <option value="Français">Français</option>
-                        <option value="Philosophie">Philosophie</option>
-                        <option value="SVT">SVT</option>
-                        <option value="Physique-Chimie">Physique-Chimie</option>
-                        <option value="Mathématiques">Mathématiques</option>
-                        <option value="Anglais">Anglais</option>
-                        <option value="Arabe">Arabe</option>
-                        <option value="Histoire-Géo">Histoire-Géo</option>
-                        <option value="Education Islamique">Education Islamique</option>
-                        <option value="EPS">EPS</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="block text-[10px] font-black text-indigo-900 mb-1 uppercase">Professeur :</label>
-                    <select id="prof-select" onchange="changerContexte()" class="w-full p-2 rounded-md border-indigo-200 font-bold text-indigo-800 text-sm">
-                        <option value="M. EL KHOUMSSI">M. EL KHOUMSSI</option>
-                        <option value="M. Alami">M. Alami</option>
-                        <option value="Mme. Bennani">Mme. Bennani</option>
-                        <option value="Administration">Direction / Surveillance</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="mb-6 flex flex-wrap gap-2 justify-center no-print">
-                <div class="flex flex-col items-center mr-4 border-r pr-4 border-gray-200">
-                    <span class="text-[9px] font-bold text-gray-400 uppercase mb-1">Appel Manuel :</span>
-                    <select id="heure-select" onchange="changerContexte()" class="p-2 rounded-lg bg-white border border-gray-300 font-bold text-gray-700 text-xs shadow-sm">
+                    <label class="block text-[9px] font-black text-indigo-400 uppercase mb-1">Heure</label>
+                    <select id="heure-select" onchange="changerContexte()" class="w-full p-2.5 rounded-xl border-none shadow-sm font-bold text-indigo-900 text-xs">
                         <option value="08-09">08:00 - 09:00</option>
                         <option value="09-10">09:00 - 10:00</option>
                         <option value="10-11">10:00 - 11:00</option>
@@ -70,53 +57,50 @@
                         <option value="17-18">17:00 - 18:00</option>
                     </select>
                 </div>
-                <div class="flex flex-wrap gap-2 items-end">
-                    <button onclick="genererBilanJournalierComplet()" class="bg-amber-500 hover:bg-amber-600 text-white px-4 py-2 rounded-lg font-black text-[10px] uppercase shadow-md transition-all">📊 Bilan Jour</button>
-                    <button onclick="genererBilanStatistique('semaine')" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg font-black text-[10px] uppercase shadow-md transition-all">📅 Bilan Hebdo</button>
-                    <button onclick="genererBilanStatistique('mois')" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg font-black text-[10px] uppercase shadow-md transition-all">🗓️ Bilan Mensuel</button>
+                <div>
+                    <label class="block text-[9px] font-black text-indigo-400 uppercase mb-1">Matière</label>
+                    <select id="matiere-select" onchange="changerContexte()" class="w-full p-2.5 rounded-xl border-none shadow-sm font-bold text-indigo-900 text-xs">
+                        <option value="Français">Français</option>
+                        <option value="SVT">SVT</option>
+                        <option value="Physique">Physique</option>
+                        <option value="Maths">Maths</option>
+                        <option value="Anglais">Anglais</option>
+                        <option value="Arabe">Arabe</option>
+                        <option value="Philo">Philo</option>
+                    </select>
                 </div>
             </div>
 
-            <div class="flex border-b border-gray-200 mb-4 no-print">
-                <button id="tab-tout" onclick="setTab('tout')" class="py-2 px-6 font-bold text-sm border-b-2 border-indigo-600 text-indigo-600 transition-all">APPEL</button>
-                <button id="tab-absents" onclick="setTab('absents')" class="py-2 px-6 font-bold text-sm border-b-2 border-transparent text-gray-400 hover:text-red-500 transition-all">ABSENTS</button>
+            <div class="flex flex-wrap gap-2 justify-center border-t border-indigo-100 pt-4">
+                <button onclick="genererBilanJournalier()" class="bg-amber-500 text-white px-3 py-2 rounded-lg font-black text-[9px] uppercase shadow-md active:scale-95">📊 Bilan Jour</button>
+                <button onclick="genererStats('semaine')" class="bg-emerald-600 text-white px-3 py-2 rounded-lg font-black text-[9px] uppercase shadow-md active:scale-95">📅 Hebdo</button>
+                <button onclick="genererStats('mois')" class="bg-indigo-600 text-white px-3 py-2 rounded-lg font-black text-[9px] uppercase shadow-md active:scale-95">🗓️ Mensuel</button>
+                <button onclick="syncDepuisCloud()" class="bg-slate-700 text-white px-3 py-2 rounded-lg font-black text-[9px] uppercase shadow-md active:scale-95">🔄 Sync</button>
+            </div>
+        </div>
+
+        <div class="p-4">
+            <div class="flex justify-between items-center mb-4 border-b-2 border-indigo-50 pb-2">
+                <h2 id="titre-zone" class="text-xs font-black text-indigo-900 uppercase italic">Appel en cours</h2>
+                <div id="stats-badge" class="bg-indigo-600 text-white px-3 py-1 rounded-full font-black text-[10px]">0 ABSENTS</div>
             </div>
 
-            <div class="flex justify-between items-center mb-4 border-b-2 border-indigo-100 pb-2">
-                <h2 id="titre-liste" class="text-sm font-black text-indigo-900 uppercase italic">Liste nominative</h2>
-                <div id="stats" class="text-white font-bold px-4 py-1 bg-indigo-600 rounded-full text-xs shadow-md"></div>
-            </div>
-
-            <div id="container-table" class="overflow-x-auto border rounded-xl shadow-inner bg-white">
-                <table class="w-full text-left border-collapse">
-                    <thead id="table-head">
-                        <tr class="bg-gray-50 text-indigo-900 uppercase text-[10px] font-black tracking-widest">
-                            <th class="py-4 px-6 border-b">Élève</th>
-                            <th id="col-presence" class="py-4 px-6 text-center border-b">Présence</th>
-                        </tr>
-                    </thead>
-                    <tbody id="student-list"></tbody>
+            <div id="affichage-principal" class="pb-24">
+                <table class="w-full border-collapse">
+                    <tbody id="student-list" class="divide-y divide-gray-100"></tbody>
                 </table>
             </div>
-            
-            <div class="mt-8 pt-6 flex flex-col md:flex-row justify-between items-center gap-4 no-print">
-                <button onclick="reinitialiser()" class="text-red-400 hover:text-red-600 text-xs font-bold uppercase transition-colors">⚠️ Vider séance</button>
-                <button onclick="window.print()" class="bg-indigo-900 text-white px-12 py-4 rounded-xl font-black shadow-2xl uppercase text-sm tracking-widest transition-all hover:scale-105">Imprimer le rapport</button>
-            </div>
+        </div>
+
+        <div class="fixed bottom-0 left-0 right-0 p-4 bg-white/90 backdrop-blur-md border-t border-gray-100 flex gap-2 no-print max-w-4xl mx-auto">
+            <button onclick="window.print()" class="flex-1 bg-slate-900 text-white py-4 rounded-xl font-black text-[10px] uppercase shadow-lg">Imprimer</button>
+            <button onclick="partagerWhatsApp()" class="flex-1 bg-green-600 text-white py-4 rounded-xl font-black text-[10px] uppercase shadow-lg">WhatsApp</button>
         </div>
     </div>
 
-    <style>
-        @media print {
-            .no-print { display: none !important; }
-            body { background: white; padding: 0; }
-            .shadow-2xl, .shadow-sm, .shadow-inner { box-shadow: none !important; border: 1px solid #ddd; }
-            .bg-indigo-900 { background-color: #1e1b4b !important; -webkit-print-color-adjust: exact; }
-            #container-table { border: none !important; }
-        }
-    </style>
-
     <script>
+        const API_URL = "VOTRE_URL_GOOGLE_SCRIPT_ICI";
+
         const donnéesClasses = {
             "2 BAC SVT": ["El Bouchibi Fatima", "Ez-Zaitouni Wiame", "Hammane Kaoutar", "El Mourabit Mohammed", "Esstitou Omar", "El Hadri Aya", "El Hadri Imane", "El Hadri Aymane", "El Mourabit Houdayfa", "Oudair Siham", "El Haddad Abdelaziz", "El Massari Ahlam", "El Mamoun Mohammed", "Yechou OLYA", "Es-Sebai Mounia", "El Mliles Hatim", "El younsi Doha", "El Meskini Yousra", "El Fayah Reda", "Nass Kassem Oussama", "ELladhi Safae", "Ramli Wafae", "El Mamouni Sajida"],
             "2 BAC PC": ["El Afia Safae", "ElLdhi Adnan", "El krioui Houdayfa", "Azzouz Mohammed", "Chaffani Rofida"],
@@ -125,183 +109,134 @@
             "1BAC LSH-4": ["chouli Mohammed", "Ez-Zaitouni Mohammed", "Stitou Halima", "El Faghloumi Abdelmounaim", "El Aissaoui Mohammed", "El Khayat Mohammed Abdelkhalek", "Ed-Derraz Zineb", "El Jebbari Khadija", "Tohouach Solimane", "El Khayat Marouane", "Ez-Zerhouni Nihad", "El Khayat Rayane", "El Meskini Sabah", "Ajan Ferdaws", "El Mourabit Ihssane", "El Mourabit Hasnaa", "El Haddad Kaoutar", "Mohammed Ali Ez-Zaitouni", "El Amrani Mohammed", "El Kharboufi Mohammed", "El Jebbari Ferdaws", "Safae Ibn Ihssane", "Ferbal Badr Eddine", "El Hajjam Mohammed", "Esh-Shouni Aya", "El Assaoui Dalal", "El Khebat Mohammed Said", "El Haddad Siham", "El Mourabit Awatif", "Es-Sbino Salma", "Ed-Derraz Khawla", "Oudaber Salah Eddine", "El Khebat Adam", "Ajenoun Ech-Chaibi Imane", "Rami Mohammed Amine", "Ed-Derfaoui Mohammed Sami", "Maouloud Yassine", "Dandan Youssef", "Adrebouch Mohammed", "El Kraymi Yassine", "Ed-Derfaoui Alae"]
         };
 
-        let absences = JSON.parse(localStorage.getItem("absences_v4_hadri")) || {};
-        let ongletActif = "tout";
-
-        function init() {
-            const today = new Date().toISOString().split('T')[0];
-            document.getElementById('date-select').value = today;
-            changerContexte();
-        }
-
-        function setTab(type) {
-            ongletActif = type;
-            changerContexte();
-        }
+        let absences = JSON.parse(localStorage.getItem("absences_v6_hadri")) || {};
 
         function changerContexte() {
             const date = document.getElementById('date-select').value;
             const classe = document.getElementById('classe-select').value;
             const heure = document.getElementById('heure-select').value;
-            const matiere = document.getElementById('matiere-select').value;
-            const idSession = `${date}_${classe}_${heure}_${matiere}`;
+            const idSession = `${date}_${classe}_${heure}_${document.getElementById('matiere-select').value}`;
 
-            document.getElementById('table-head').style.display = "table-header-group";
-            document.getElementById('titre-liste').innerText = (ongletActif === 'tout') ? "Liste nominative" : "Absents uniquement";
+            // Détection heure précédente
+            const créneaux = ["08-09", "09-10", "10-11", "11-12", "14-15", "15-16", "16-17", "17-18"];
+            const idx = créneaux.indexOf(heure);
+            let hPrec = idx > 0 ? créneaux[idx-1] : null;
+            let listHPrec = [];
+            if(hPrec) {
+                Object.keys(absences).forEach(k => {
+                    if(k.startsWith(`${date}_${classe}_${hPrec}`)) listHPrec = [...new Set([...listHPrec, ...absences[k]])];
+                });
+            }
 
-            const listeCorps = document.getElementById('student-list');
-            listeCorps.innerHTML = "";
+            document.getElementById('titre-zone').innerText = "Appel : " + classe;
+            const body = document.getElementById('student-list');
+            body.innerHTML = "";
 
             donnéesClasses[classe].forEach(nom => {
-                const estAbsent = absences[idSession] && absences[idSession].includes(nom);
-                if (ongletActif === 'absents' && !estAbsent) return;
-
-                const ligne = `
-                    <tr class="border-b hover:bg-indigo-50 transition-colors">
-                        <td class="py-4 px-6 font-medium text-gray-800 text-sm">${nom}</td>
-                        <td class="py-4 px-6 text-center">
+                const estAbsent = absences[idSession]?.includes(nom);
+                const etaitAbsent = listHPrec.includes(nom);
+                body.innerHTML += `
+                    <tr class="border-b ${etaitAbsent && !estAbsent ? 'bg-orange-50' : ''}">
+                        <td class="p-3 text-xs font-bold">
+                            ${nom} ${etaitAbsent ? '<br><span class="text-[7px] text-orange-600 uppercase">⚠ Absent heure précédente</span>' : ''}
+                        </td>
+                        <td class="p-3 text-right">
                             <button onclick="toggleAbsence(this, '${idSession}', '${nom}')" 
-                                    class="${estAbsent ? 'bg-red-500' : 'bg-emerald-500'} text-white px-5 py-2 rounded-lg text-[10px] font-black w-28 uppercase transition-all shadow-sm">
+                                class="px-4 py-2 rounded-lg text-[9px] font-black uppercase ${estAbsent ? 'bg-red-500 text-white' : 'bg-slate-100 text-slate-400'}">
                                 ${estAbsent ? 'Absent' : 'Présent'}
                             </button>
                         </td>
-                    </tr>
+                    </tr>`;
+            });
+            document.getElementById('stats-badge').innerText = (absences[idSession]?.length || 0) + " ABSENTS";
+        }
+
+        async function toggleAbsence(btn, id, nom) {
+            if(!absences[id]) absences[id] = [];
+            let action = "";
+            if(!absences[id].includes(nom)) { absences[id].push(nom); action = "Absent"; }
+            else { absences[id] = absences[id].filter(n => n !== nom); action = "Présent"; }
+            
+            localStorage.setItem("absences_v6_hadri", JSON.stringify(absences));
+            changerContexte();
+
+            if(!API_URL.includes("VOTRE_URL")) {
+                fetch(API_URL, { method: "POST", mode: "no-cors", body: JSON.stringify({
+                    id, nom, action, date: id.split('_')[0], classe: id.split('_')[1], heure: id.split('_')[2], matiere: id.split('_')[3]
+                })});
+            }
+        }
+
+        // --- FONCTIONS DE BILANS ---
+
+        function genererBilanJournalier() {
+            const date = document.getElementById('date-select').value;
+            document.getElementById('titre-zone').innerText = "Rapport du " + date;
+            const body = document.getElementById('student-list');
+            let html = "";
+            let total = 0;
+
+            Object.keys(absences).filter(k => k.startsWith(date)).forEach(id => {
+                const [d, cl, h, m] = id.split('_');
+                total += absences[id].length;
+                html += `
+                    <tr class="bg-indigo-900 text-white"><td colspan="2" class="p-2 text-[10px] font-bold uppercase">${h}h | ${cl} (${m})</td></tr>
+                    <tr><td colspan="2" class="p-3 text-xs text-red-600 font-bold">${absences[id].length > 0 ? absences[id].join(', ') : 'Aucun absent'}</td></tr>
                 `;
-                listeCorps.innerHTML += ligne;
             });
-            mettreAJourStats(idSession, classe);
+            body.innerHTML = html || "<tr><td class='p-10 text-center text-gray-400'>Aucune donnée pour ce jour</td></tr>";
+            document.getElementById('stats-badge').innerText = "TOTAL : " + total;
         }
 
-        function toggleAbsence(btn, idSession, nom) {
-            if (!absences[idSession]) absences[idSession] = [];
-            if (btn.innerText === "PRÉSENT") {
-                btn.innerText = "ABSENT"; btn.classList.replace("bg-emerald-500", "bg-red-500");
-                absences[idSession].push(nom);
-            } else {
-                btn.innerText = "PRÉSENT"; btn.classList.replace("bg-red-500", "bg-emerald-500");
-                absences[idSession] = absences[idSession].filter(n => n !== nom);
-            }
-            localStorage.setItem("absences_v4_hadri", JSON.stringify(absences));
-            mettreAJourStats(idSession, document.getElementById('classe-select').value);
-        }
-
-        function mettreAJourStats(idSession, classe) {
-            const total = donnéesClasses[classe].length;
-            const absents = absences[idSession] ? absences[idSession].length : 0;
-            document.getElementById('stats').innerText = `${absents} ABSENT(S) / ${total}`;
-        }
-
-        function genererBilanJournalierComplet() {
-            const dateCible = document.getElementById('date-select').value;
-            const listeCorps = document.getElementById('student-list');
-            document.getElementById('table-head').style.display = "none";
-            document.getElementById('titre-liste').innerText = `RAPPORT GÉNÉRAL DES SÉANCES - ${dateCible}`;
+        function genererStats(periode) {
+            const body = document.getElementById('student-list');
+            document.getElementById('titre-zone').innerText = "Statistiques " + periode;
+            let stats = {};
             
-            let html = `<tr><td colspan="2" class="p-0 border-none">`;
-            let totalJour = 0;
-            let aDonnees = false;
-
-            const clesTriees = Object.keys(absences)
-                .filter(id => id.startsWith(dateCible))
-                .sort((a, b) => a.split('_')[2].localeCompare(b.split('_')[2]));
-
-            clesTriees.forEach(id => {
-                const [date, classe, heure, matiere] = id.split('_');
-                const liste = absences[id];
-                if (liste.length >= 0) {
-                    aDonnees = true;
-                    totalJour += liste.length;
-                    html += `
-                        <div class="mb-4 border-b pb-4">
-                            <div class="flex justify-between items-center bg-gray-100 p-2 rounded border-l-4 border-indigo-900">
-                                <span class="font-black text-indigo-900 uppercase text-xs">${heure}H | ${classe}</span>
-                                <span class="text-[10px] font-bold bg-indigo-200 px-2 py-1 rounded text-indigo-800">${matiere}</span>
-                            </div>
-                            <div class="mt-2 px-2 text-sm">
-                                <span class="font-bold text-gray-500 italic">Absents (${liste.length}) :</span> 
-                                <span class="${liste.length > 0 ? 'text-red-600 font-bold' : 'text-emerald-600 font-medium'}">
-                                    ${liste.length > 0 ? liste.join(', ') : 'Aucun absent 🎉'}
-                                </span>
-                            </div>
-                        </div>
-                    `;
-                }
-            });
-
-            if (!aDonnees) html += `<div class="p-10 text-center text-gray-400 italic">Aucune séance enregistrée pour cette journée.</div>`;
-            html += `</td></tr>`;
-            listeCorps.innerHTML = html;
-            document.getElementById('stats').innerText = `TOTAL ABSENCES JOUR : ${totalJour}`;
-        }
-
-        function genererBilanStatistique(periode) {
-            const dateRef = new Date(document.getElementById('date-select').value);
-            const listeCorps = document.getElementById('student-list');
-            document.getElementById('table-head').style.display = "none";
-            
-            let debut = new Date(dateRef);
-            let fin = new Date(dateRef);
-            let titre = "";
-
-            if (periode === 'semaine') {
-                const jour = debut.getDay() || 7;
-                debut.setDate(debut.getDate() - jour + 1);
-                fin.setDate(debut.getDate() + 6);
-                titre = `STATISTIQUES HEBDOMADAIRES (${debut.toLocaleDateString()} au ${fin.toLocaleDateString()})`;
-            } else {
-                debut.setDate(1);
-                fin.setMonth(fin.getMonth() + 1); fin.setDate(0);
-                titre = `STATISTIQUES MENSUELLES (${debut.getMonth()+1}/${debut.getFullYear()})`;
-            }
-
-            let statsEleves = {};
-            for (let id in absences) {
-                const dateSess = new Date(id.split('_')[0]);
-                if (dateSess >= debut && dateSess <= fin) {
-                    absences[id].forEach(nom => {
-                        const classe = id.split('_')[1];
-                        if (!statsEleves[nom]) statsEleves[nom] = { classe: classe, total: 0 };
-                        statsEleves[nom].total++;
-                    });
-                }
-            }
-
-            document.getElementById('titre-liste').innerText = titre;
-            let html = `<tr><td colspan="2" class="p-0 border-none">
-                <table class="w-full">
-                    <tr class="bg-indigo-900 text-white text-[10px] uppercase font-bold text-center">
-                        <th class="p-3 text-left">Élève</th><th class="p-3">Classe</th><th class="p-3">Nb Absences</th>
-                    </tr>`;
-            
-            const tries = Object.entries(statsEleves).sort((a, b) => b[1].total - a[1].total);
-            if (tries.length === 0) {
-                html += `<tr><td colspan="3" class="p-10 text-center text-gray-400">Aucune donnée trouvée.</td></tr>`;
-            } else {
-                tries.forEach(([nom, d]) => {
-                    html += `<tr class="border-b text-sm text-center">
-                        <td class="p-3 text-left font-bold">${nom}</td>
-                        <td class="p-3 text-gray-500">${d.classe}</td>
-                        <td class="p-3 font-black text-red-600">${d.total}</td>
-                    </tr>`;
+            Object.keys(absences).forEach(id => {
+                absences[id].forEach(nom => {
+                    stats[nom] = (stats[nom] || 0) + 1;
                 });
-            }
-            html += `</table></td></tr>`;
-            listeCorps.innerHTML = html;
+            });
+
+            let tri = Object.entries(stats).sort((a,b) => b[1] - a[1]);
+            let html = `<tr class="bg-slate-800 text-white font-bold text-[9px] uppercase"><td class="p-2">Nom de l'élève</td><td class="p-2 text-center">Nombre d'absences</td></tr>`;
+            tri.forEach(([nom, nb]) => {
+                html += `<tr class="border-b"><td class="p-3 text-xs font-bold">${nom}</td><td class="p-3 text-center text-red-600 font-black">${nb}</td></tr>`;
+            });
+            body.innerHTML = tri.length > 0 ? html : "<tr><td class='p-10 text-center text-gray-400'>Aucune statistique disponible</td></tr>";
         }
 
-        function reinitialiser() {
-            if(confirm("Effacer les données de cet appel ?")) {
-                const date = document.getElementById('date-select').value;
-                const classe = document.getElementById('classe-select').value;
-                const heure = document.getElementById('heure-select').value;
-                const matiere = document.getElementById('matiere-select').value;
-                delete absences[`${date}_${classe}_${heure}_${matiere}`];
-                localStorage.setItem("absences_v4_hadri", JSON.stringify(absences));
+        async function syncDepuisCloud() {
+            if(API_URL.includes("VOTRE_URL")) return;
+            document.getElementById('loading-overlay').classList.remove('hidden');
+            try {
+                const res = await fetch(API_URL);
+                const data = await res.json();
+                absences = {};
+                data.slice(1).forEach(r => {
+                    if(r[6] === "Absent") {
+                        if(!absences[r[0]]) absences[r[0]] = [];
+                        absences[r[0]].push(r[5]);
+                    }
+                });
+                localStorage.setItem("absences_v6_hadri", JSON.stringify(absences));
                 changerContexte();
-            }
+            } catch(e) { alert("Erreur de synchronisation"); }
+            document.getElementById('loading-overlay').classList.add('hidden');
         }
 
-        window.onload = init;
+        function partagerWhatsApp() {
+            const date = document.getElementById('date-select').value;
+            const texte = `*Lycée EL HADRI - Rapport*\nDate: ${date}\n${document.getElementById('stats-badge').innerText}\n\nConsultez le registre pour plus de détails.`;
+            window.open(`https://wa.me/?text=${encodeURIComponent(texte)}`);
+        }
+
+        window.onload = () => {
+            document.getElementById('date-select').value = new Date().toISOString().split('T')[0];
+            changerContexte();
+            syncDepuisCloud();
+        };
     </script>
 </body>
 </html>
