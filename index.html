@@ -15,7 +15,7 @@
         </div>
 
         <div class="p-6">
-            <div class="mb-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 bg-indigo-50 p-5 rounded-lg border border-indigo-100 shadow-sm">
+            <div class="mb-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 bg-indigo-50 p-5 rounded-lg border border-indigo-100 shadow-sm no-print">
                 <div>
                     <label class="block text-[10px] font-black text-indigo-900 mb-1 uppercase">Date :</label>
                     <input type="date" id="date-select" onchange="changerContexte()" class="w-full p-2 rounded-md border-indigo-200 font-bold text-indigo-800 text-sm">
@@ -39,6 +39,10 @@
                         <option value="Physique-Chimie">Physique-Chimie</option>
                         <option value="Mathématiques">Mathématiques</option>
                         <option value="Anglais">Anglais</option>
+                        <option value="Arabe">Arabe</option>
+                        <option value="Histoire-Géo">Histoire-Géo</option>
+                        <option value="Education Islamique">Education Islamique</option>
+                        <option value="EPS">EPS</option>
                     </select>
                 </div>
                 <div>
@@ -52,37 +56,40 @@
                 </div>
             </div>
 
-            <div class="mb-6 flex flex-wrap gap-2 justify-center">
-                <span class="text-[10px] font-bold text-gray-400 w-full text-center mb-1 uppercase">Choisir la séance :</span>
-                <select id="heure-select" onchange="changerContexte()" class="p-2 rounded-lg bg-white border border-gray-300 font-bold text-gray-700 text-sm shadow-sm outline-none focus:ring-2 focus:ring-indigo-500">
-                    <option value="08-09">08:00 - 09:00</option>
-                    <option value="09-10">09:00 - 10:00</option>
-                    <option value="10-11">10:00 - 11:00</option>
-                    <option value="11-12">11:00 - 12:00</option>
-                    <option value="14-15">14:00 - 15:00</option>
-                    <option value="15-16">15:00 - 16:00</option>
-                    <option value="16-17">16:00 - 17:00</option>
-                    <option value="17-18">17:00 - 18:00</option>
-                </select>
+            <div class="mb-6 flex flex-wrap gap-2 justify-center no-print">
+                <div class="flex flex-col items-center mr-4 border-r pr-4 border-gray-200">
+                    <span class="text-[9px] font-bold text-gray-400 uppercase mb-1">Appel Manuel :</span>
+                    <select id="heure-select" onchange="changerContexte()" class="p-2 rounded-lg bg-white border border-gray-300 font-bold text-gray-700 text-xs shadow-sm">
+                        <option value="08-09">08:00 - 09:00</option>
+                        <option value="09-10">09:00 - 10:00</option>
+                        <option value="10-11">10:00 - 11:00</option>
+                        <option value="11-12">11:00 - 12:00</option>
+                        <option value="14-15">14:00 - 15:00</option>
+                        <option value="15-16">15:00 - 16:00</option>
+                        <option value="16-17">16:00 - 17:00</option>
+                        <option value="17-18">17:00 - 18:00</option>
+                    </select>
+                </div>
+                <div class="flex flex-wrap gap-2 items-end">
+                    <button onclick="genererBilanJournalierComplet()" class="bg-amber-500 hover:bg-amber-600 text-white px-4 py-2 rounded-lg font-black text-[10px] uppercase shadow-md transition-all">📊 Bilan Jour</button>
+                    <button onclick="genererBilanStatistique('semaine')" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg font-black text-[10px] uppercase shadow-md transition-all">📅 Bilan Hebdo</button>
+                    <button onclick="genererBilanStatistique('mois')" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg font-black text-[10px] uppercase shadow-md transition-all">🗓️ Bilan Mensuel</button>
+                </div>
             </div>
 
             <div class="flex border-b border-gray-200 mb-4 no-print">
-                <button id="tab-tout" onclick="setTab('tout')" class="py-2 px-6 font-bold text-sm border-b-2 border-indigo-600 text-indigo-600 transition-all">
-                    📋 APPEL COMPLET
-                </button>
-                <button id="tab-absents" onclick="setTab('absents')" class="py-2 px-6 font-bold text-sm border-b-2 border-transparent text-gray-400 hover:text-red-500 transition-all">
-                    🚫 LISTE DES ABSENTS
-                </button>
+                <button id="tab-tout" onclick="setTab('tout')" class="py-2 px-6 font-bold text-sm border-b-2 border-indigo-600 text-indigo-600 transition-all">APPEL</button>
+                <button id="tab-absents" onclick="setTab('absents')" class="py-2 px-6 font-bold text-sm border-b-2 border-transparent text-gray-400 hover:text-red-500 transition-all">ABSENTS</button>
             </div>
 
             <div class="flex justify-between items-center mb-4 border-b-2 border-indigo-100 pb-2">
-                <h2 id="titre-liste" class="text-sm font-black text-indigo-900 uppercase">Liste nominative</h2>
+                <h2 id="titre-liste" class="text-sm font-black text-indigo-900 uppercase italic">Liste nominative</h2>
                 <div id="stats" class="text-white font-bold px-4 py-1 bg-indigo-600 rounded-full text-xs shadow-md"></div>
             </div>
 
-            <div class="overflow-x-auto border rounded-xl shadow-inner bg-white">
+            <div id="container-table" class="overflow-x-auto border rounded-xl shadow-inner bg-white">
                 <table class="w-full text-left border-collapse">
-                    <thead>
+                    <thead id="table-head">
                         <tr class="bg-gray-50 text-indigo-900 uppercase text-[10px] font-black tracking-widest">
                             <th class="py-4 px-6 border-b">Élève</th>
                             <th id="col-presence" class="py-4 px-6 text-center border-b">Présence</th>
@@ -93,12 +100,8 @@
             </div>
             
             <div class="mt-8 pt-6 flex flex-col md:flex-row justify-between items-center gap-4 no-print">
-                <button onclick="reinitialiser()" class="text-red-400 hover:text-red-600 text-xs font-bold uppercase tracking-widest transition-colors">
-                    ⚠️ Vider cette séance
-                </button>
-                <button onclick="window.print()" class="bg-indigo-700 hover:bg-indigo-800 text-white px-12 py-4 rounded-xl font-black shadow-2xl transition-all transform hover:scale-105 uppercase text-sm tracking-widest">
-                    Imprimer le rapport d'appel
-                </button>
+                <button onclick="reinitialiser()" class="text-red-400 hover:text-red-600 text-xs font-bold uppercase transition-colors">⚠️ Vider séance</button>
+                <button onclick="window.print()" class="bg-indigo-900 text-white px-12 py-4 rounded-xl font-black shadow-2xl uppercase text-sm tracking-widest transition-all hover:scale-105">Imprimer le rapport</button>
             </div>
         </div>
     </div>
@@ -107,15 +110,16 @@
         @media print {
             .no-print { display: none !important; }
             body { background: white; padding: 0; }
-            .shadow-2xl, .shadow-sm { box-shadow: none; border: 1px solid #eee; }
+            .shadow-2xl, .shadow-sm, .shadow-inner { box-shadow: none !important; border: 1px solid #ddd; }
             .bg-indigo-900 { background-color: #1e1b4b !important; -webkit-print-color-adjust: exact; }
+            #container-table { border: none !important; }
         }
     </style>
 
     <script>
         const donnéesClasses = {
             "2 BAC SVT": ["El Bouchibi Fatima", "Ez-Zaitouni Wiame", "Hammane Kaoutar", "El Mourabit Mohammed", "Esstitou Omar", "El Hadri Aya", "El Hadri Imane", "El Hadri Aymane", "El Mourabit Houdayfa", "Oudair Siham", "El Haddad Abdelaziz", "El Massari Ahlam", "El Mamoun Mohammed", "Yechou OLYA", "Es-Sebai Mounia", "El Mliles Hatim", "El younsi Doha", "El Meskini Yousra", "El Fayah Reda", "Nass Kassem Oussama", "ELladhi Safae", "Ramli Wafae", "El Mamouni Sajida"],
-            "2 BAC PC": ["El Afia Safae", "ElLdhi Adnan", "El krioui Houdayfa", "Azzouz Mohammed", "Chaffani Rafida"],
+            "2 BAC PC": ["El Afia Safae", "ElLdhi Adnan", "El krioui Houdayfa", "Azzouz Mohammed", "Chaffani Rofida"],
             "2BAC SPC FR": ["El Massari Yaacoub", "El Assaoui Ouidad", "El Hammam Mohammed Anas", "El Faghloumi Mohammed Amine", "Abouali Nada", "El Faghloumi Yassir", "Doha El Rifi", "Merouane Oumaima", "Hanan Chafia", "Ajenoun Ech-Chaibi Adam", "El Mebless Safae", "Er-Rifi Islah", "El Amri Aya", "El Younsi Nada", "El Bakali Hafsa", "El Bakali Mohammed", "Zineb Er-Rafas", "Aalilou Ouidad", "El Belhaissani Adam", "El Afia Farah", "El Meskini Hidaya", "Ech-Chaibi Alae", "Douae Ben hssayne", "El Ghedouani Yahya"],
             "1BAC SLH-3": ["Ferbal Ayoub", "El Hadri Awatif", "El Khebat Mohammed", "Benerim Remissa", "El Ghoual Aya", "El Khebat Zaid", "Aârim Mohammed Yassine", "El Haddad Abdelkafi", "El Haddar Abderrahmane", "El Berremani Mohammed", "El Abdouni Manal", "El Hassini Douae", "El Jebbari Kholoud", "Ed-Derraz Fatima", "El Massari Mohammed", "Slimane El Abboudi", "Younes El Abboudi", "Ibrahim Wissal", "Oulad Hammidou Mohammed Ben Mohammed", "Aidoune Mohammed Reda", "El Jebbari Maryam", "El Abous Neamat", "Aârim Mohammed", "Kerbal Ahmed", "Aharmim Badr Eddine", "Aharmim Solimane Abdessalam", "Ahremim Fatima Zohra", "El Faghloumi Mohammed", "Oudaber Hafsa", "El Bezrani Mansour", "El Bounsi Nassira", "Boukhalef Aya Abdelaziz", "El Ladehi Mohammed Reda", "Ez-Zaitouni Mohammed", "El Bakali Et-Tahiri Aya", "El Younssfi Douae", "Aârim Rabie", "Es-Sellassi Wail", "El Mamoun Dina", "El Bakali Malak", "El Bakali Mouna", "Jebrone Youssef", "Ed-Derkaoui Younes"],
             "1BAC LSH-4": ["chouli Mohammed", "Ez-Zaitouni Mohammed", "Stitou Halima", "El Faghloumi Abdelmounaim", "El Aissaoui Mohammed", "El Khayat Mohammed Abdelkhalek", "Ed-Derraz Zineb", "El Jebbari Khadija", "Tohouach Solimane", "El Khayat Marouane", "Ez-Zerhouni Nihad", "El Khayat Rayane", "El Meskini Sabah", "Ajan Ferdaws", "El Mourabit Ihssane", "El Mourabit Hasnaa", "El Haddad Kaoutar", "Mohammed Ali Ez-Zaitouni", "El Amrani Mohammed", "El Kharboufi Mohammed", "El Jebbari Ferdaws", "Safae Ibn Ihssane", "Ferbal Badr Eddine", "El Hajjam Mohammed", "Esh-Shouni Aya", "El Assaoui Dalal", "El Khebat Mohammed Said", "El Haddad Siham", "El Mourabit Awatif", "Es-Sbino Salma", "Ed-Derraz Khawla", "Oudaber Salah Eddine", "El Khebat Adam", "Ajenoun Ech-Chaibi Imane", "Rami Mohammed Amine", "Ed-Derfaoui Mohammed Sami", "Maouloud Yassine", "Dandan Youssef", "Adrebouch Mohammed", "El Kraymi Yassine", "Ed-Derfaoui Alae"]
@@ -132,20 +136,6 @@
 
         function setTab(type) {
             ongletActif = type;
-            const btnTout = document.getElementById('tab-tout');
-            const btnAbsents = document.getElementById('tab-absents');
-            
-            if(type === 'tout') {
-                btnTout.className = "py-2 px-6 font-bold text-sm border-b-2 border-indigo-600 text-indigo-600 transition-all";
-                btnAbsents.className = "py-2 px-6 font-bold text-sm border-b-2 border-transparent text-gray-400 hover:text-red-500 transition-all";
-                document.getElementById('col-presence').style.display = "table-cell";
-                document.getElementById('titre-liste').innerText = "Liste nominative";
-            } else {
-                btnAbsents.className = "py-2 px-6 font-bold text-sm border-b-2 border-red-500 text-red-500 transition-all";
-                btnTout.className = "py-2 px-6 font-bold text-sm border-b-2 border-transparent text-gray-400 hover:text-indigo-600 transition-all";
-                document.getElementById('col-presence').style.display = "none";
-                document.getElementById('titre-liste').innerText = "Uniquement les absents";
-            }
             changerContexte();
         }
 
@@ -156,21 +146,22 @@
             const matiere = document.getElementById('matiere-select').value;
             const idSession = `${date}_${classe}_${heure}_${matiere}`;
 
+            document.getElementById('table-head').style.display = "table-header-group";
+            document.getElementById('titre-liste').innerText = (ongletActif === 'tout') ? "Liste nominative" : "Absents uniquement";
+
             const listeCorps = document.getElementById('student-list');
             listeCorps.innerHTML = "";
 
             donnéesClasses[classe].forEach(nom => {
                 const estAbsent = absences[idSession] && absences[idSession].includes(nom);
-                
-                // Si l'onglet "absents" est actif, on n'affiche que ceux qui sont absents
                 if (ongletActif === 'absents' && !estAbsent) return;
 
                 const ligne = `
                     <tr class="border-b hover:bg-indigo-50 transition-colors">
                         <td class="py-4 px-6 font-medium text-gray-800 text-sm">${nom}</td>
-                        <td class="py-4 px-6 text-center" style="${ongletActif === 'absents' ? 'display:none' : ''}">
+                        <td class="py-4 px-6 text-center">
                             <button onclick="toggleAbsence(this, '${idSession}', '${nom}')" 
-                                    class="${estAbsent ? 'bg-red-500' : 'bg-emerald-500'} text-white px-5 py-2 rounded-lg text-[10px] font-black shadow-sm w-28 uppercase tracking-widest transition-all">
+                                    class="${estAbsent ? 'bg-red-500' : 'bg-emerald-500'} text-white px-5 py-2 rounded-lg text-[10px] font-black w-28 uppercase transition-all shadow-sm">
                                 ${estAbsent ? 'Absent' : 'Présent'}
                             </button>
                         </td>
@@ -178,29 +169,20 @@
                 `;
                 listeCorps.innerHTML += ligne;
             });
-            
-            if (ongletActif === 'absents' && listeCorps.innerHTML === "") {
-                listeCorps.innerHTML = `<tr><td colspan="2" class="p-10 text-center text-gray-400 font-bold italic">Aucun absent pour le moment 🎉</td></tr>`;
-            }
-
             mettreAJourStats(idSession, classe);
         }
 
         function toggleAbsence(btn, idSession, nom) {
             if (!absences[idSession]) absences[idSession] = [];
-
             if (btn.innerText === "PRÉSENT") {
-                btn.innerText = "ABSENT";
-                btn.classList.replace("bg-emerald-500", "bg-red-500");
+                btn.innerText = "ABSENT"; btn.classList.replace("bg-emerald-500", "bg-red-500");
                 absences[idSession].push(nom);
             } else {
-                btn.innerText = "PRÉSENT";
-                btn.classList.replace("bg-red-500", "bg-emerald-500");
+                btn.innerText = "PRÉSENT"; btn.classList.replace("bg-red-500", "bg-emerald-500");
                 absences[idSession] = absences[idSession].filter(n => n !== nom);
             }
             localStorage.setItem("absences_v4_hadri", JSON.stringify(absences));
-            const classe = document.getElementById('classe-select').value;
-            mettreAJourStats(idSession, classe);
+            mettreAJourStats(idSession, document.getElementById('classe-select').value);
         }
 
         function mettreAJourStats(idSession, classe) {
@@ -209,13 +191,111 @@
             document.getElementById('stats').innerText = `${absents} ABSENT(S) / ${total}`;
         }
 
+        function genererBilanJournalierComplet() {
+            const dateCible = document.getElementById('date-select').value;
+            const listeCorps = document.getElementById('student-list');
+            document.getElementById('table-head').style.display = "none";
+            document.getElementById('titre-liste').innerText = `RAPPORT GÉNÉRAL DES SÉANCES - ${dateCible}`;
+            
+            let html = `<tr><td colspan="2" class="p-0 border-none">`;
+            let totalJour = 0;
+            let aDonnees = false;
+
+            const clesTriees = Object.keys(absences)
+                .filter(id => id.startsWith(dateCible))
+                .sort((a, b) => a.split('_')[2].localeCompare(b.split('_')[2]));
+
+            clesTriees.forEach(id => {
+                const [date, classe, heure, matiere] = id.split('_');
+                const liste = absences[id];
+                if (liste.length >= 0) {
+                    aDonnees = true;
+                    totalJour += liste.length;
+                    html += `
+                        <div class="mb-4 border-b pb-4">
+                            <div class="flex justify-between items-center bg-gray-100 p-2 rounded border-l-4 border-indigo-900">
+                                <span class="font-black text-indigo-900 uppercase text-xs">${heure}H | ${classe}</span>
+                                <span class="text-[10px] font-bold bg-indigo-200 px-2 py-1 rounded text-indigo-800">${matiere}</span>
+                            </div>
+                            <div class="mt-2 px-2 text-sm">
+                                <span class="font-bold text-gray-500 italic">Absents (${liste.length}) :</span> 
+                                <span class="${liste.length > 0 ? 'text-red-600 font-bold' : 'text-emerald-600 font-medium'}">
+                                    ${liste.length > 0 ? liste.join(', ') : 'Aucun absent 🎉'}
+                                </span>
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+
+            if (!aDonnees) html += `<div class="p-10 text-center text-gray-400 italic">Aucune séance enregistrée pour cette journée.</div>`;
+            html += `</td></tr>`;
+            listeCorps.innerHTML = html;
+            document.getElementById('stats').innerText = `TOTAL ABSENCES JOUR : ${totalJour}`;
+        }
+
+        function genererBilanStatistique(periode) {
+            const dateRef = new Date(document.getElementById('date-select').value);
+            const listeCorps = document.getElementById('student-list');
+            document.getElementById('table-head').style.display = "none";
+            
+            let debut = new Date(dateRef);
+            let fin = new Date(dateRef);
+            let titre = "";
+
+            if (periode === 'semaine') {
+                const jour = debut.getDay() || 7;
+                debut.setDate(debut.getDate() - jour + 1);
+                fin.setDate(debut.getDate() + 6);
+                titre = `STATISTIQUES HEBDOMADAIRES (${debut.toLocaleDateString()} au ${fin.toLocaleDateString()})`;
+            } else {
+                debut.setDate(1);
+                fin.setMonth(fin.getMonth() + 1); fin.setDate(0);
+                titre = `STATISTIQUES MENSUELLES (${debut.getMonth()+1}/${debut.getFullYear()})`;
+            }
+
+            let statsEleves = {};
+            for (let id in absences) {
+                const dateSess = new Date(id.split('_')[0]);
+                if (dateSess >= debut && dateSess <= fin) {
+                    absences[id].forEach(nom => {
+                        const classe = id.split('_')[1];
+                        if (!statsEleves[nom]) statsEleves[nom] = { classe: classe, total: 0 };
+                        statsEleves[nom].total++;
+                    });
+                }
+            }
+
+            document.getElementById('titre-liste').innerText = titre;
+            let html = `<tr><td colspan="2" class="p-0 border-none">
+                <table class="w-full">
+                    <tr class="bg-indigo-900 text-white text-[10px] uppercase font-bold text-center">
+                        <th class="p-3 text-left">Élève</th><th class="p-3">Classe</th><th class="p-3">Nb Absences</th>
+                    </tr>`;
+            
+            const tries = Object.entries(statsEleves).sort((a, b) => b[1].total - a[1].total);
+            if (tries.length === 0) {
+                html += `<tr><td colspan="3" class="p-10 text-center text-gray-400">Aucune donnée trouvée.</td></tr>`;
+            } else {
+                tries.forEach(([nom, d]) => {
+                    html += `<tr class="border-b text-sm text-center">
+                        <td class="p-3 text-left font-bold">${nom}</td>
+                        <td class="p-3 text-gray-500">${d.classe}</td>
+                        <td class="p-3 font-black text-red-600">${d.total}</td>
+                    </tr>`;
+                });
+            }
+            html += `</table></td></tr>`;
+            listeCorps.innerHTML = html;
+        }
+
         function reinitialiser() {
             if(confirm("Effacer les données de cet appel ?")) {
                 const date = document.getElementById('date-select').value;
                 const classe = document.getElementById('classe-select').value;
                 const heure = document.getElementById('heure-select').value;
                 const matiere = document.getElementById('matiere-select').value;
-                absences[`${date}_${classe}_${heure}_${matiere}`] = [];
+                delete absences[`${date}_${classe}_${heure}_${matiere}`];
                 localStorage.setItem("absences_v4_hadri", JSON.stringify(absences));
                 changerContexte();
             }
