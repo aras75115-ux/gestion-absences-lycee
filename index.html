@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Appel Pro - EL HADRI</title>
+    <title>تطبيق الغياب - ثانوية الهادري</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
-        body { font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap');
+        body { font-family: 'Cairo', sans-serif; -webkit-tap-highlight-color: transparent; }
         @media print { .no-print { display: none !important; } }
     </style>
 </head>
@@ -15,32 +15,32 @@
 
     <div class="max-w-4xl mx-auto bg-white min-h-screen shadow-2xl pb-32">
         <div class="bg-indigo-950 p-6 text-white text-center border-b-4 border-amber-500">
-            <h1 class="text-sm md:text-xl font-black uppercase tracking-tighter">EL HAJJ MOHAMED BEN HSSAYN EL HADRI</h1>
+            <h1 class="text-sm md:text-xl font-black uppercase tracking-tighter">ثانوية الحاج محمد بن حسين الهادري</h1>
             <div class="flex justify-center items-center gap-2 mt-2">
                 <span class="h-2 w-2 bg-emerald-400 rounded-full animate-ping"></span>
-                <p class="text-[10px] font-bold text-indigo-200 uppercase tracking-[0.2em]">Suivi des Absences Automatisé</p>
+                <p class="text-[10px] font-bold text-indigo-200 uppercase tracking-[0.2em]">نظام تتبع الغياب الآلي</p>
             </div>
         </div>
 
         <div class="p-4 bg-slate-100 border-b no-print space-y-3">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-2 text-right">
                 <div class="flex flex-col">
-                    <label class="text-[9px] font-bold text-slate-500 uppercase ml-1">Date</label>
+                    <label class="text-[9px] font-bold text-slate-500 mb-1 mr-1">التاريخ</label>
                     <input type="date" id="date-select" onchange="changerContexte()" class="p-2.5 rounded-xl border-none shadow-sm font-bold text-indigo-900 text-xs">
                 </div>
                 <div class="flex flex-col">
-                    <label class="text-[9px] font-bold text-slate-500 uppercase ml-1">Classe</label>
+                    <label class="text-[9px] font-bold text-slate-500 mb-1 mr-1">القسم</label>
                     <select id="classe-select" onchange="changerContexte()" class="p-2.5 rounded-xl border-none shadow-sm font-bold text-indigo-900 text-xs">
-                        <option value="2 BAC SVT">2 BAC SVT</option>
-                        <option value="2 BAC PC">2 BAC PC</option>
+                        <option value="2 BAC SVT">الثانية باك علوم حياة وأرض</option>
+                        <option value="2 BAC PC">الثانية باك علوم فيزيائية</option>
                         <option value="2BAC SPC FR">2BAC SPC FR</option>
-                        <option value="1BAC SLH-3">1BAC SLH-3</option>
-                        <option value="1BAC LSH-4">1BAC LSH-4</option>
+                        <option value="1BAC SLH-3">الأولى باك آداب 3</option>
+                        <option value="1BAC LSH-4">الأولى باك آداب 4</option>
                     </select>
                 </div>
                 <div class="flex flex-col">
-                    <label class="text-[9px] font-bold text-slate-500 uppercase ml-1">Heure</label>
-                    <select id="heure-select" onchange="changerContexte()" class="p-2.5 rounded-xl border-none shadow-sm font-bold text-indigo-900 text-xs">
+                    <label class="text-[9px] font-bold text-slate-500 mb-1 mr-1">الحصة</label>
+                    <select id="heure-select" onchange="changerContexte()" class="p-2.5 rounded-xl border-none shadow-sm font-bold text-indigo-900 text-xs text-left" dir="ltr">
                         <option value="08-09">08:00 - 09:00</option>
                         <option value="09-10">09:00 - 10:00</option>
                         <option value="10-11">10:00 - 11:00</option>
@@ -52,35 +52,35 @@
                     </select>
                 </div>
                 <div class="flex flex-col">
-                    <label class="text-[9px] font-bold text-slate-500 uppercase ml-1">Matière</label>
+                    <label class="text-[9px] font-bold text-slate-500 mb-1 mr-1">المادة</label>
                     <select id="matiere-select" onchange="changerContexte()" class="p-2.5 rounded-xl border-none shadow-sm font-bold text-indigo-900 text-xs">
-                        <option value="Français">Français</option>
-                        <option value="Arabe">Arabe</option>
-                        <option value="Mathématiques">Mathématiques</option>
-                        <option value="Physique-Chimie">Physique-Chimie</option>
-                        <option value="SVT">SVT</option>
-                        <option value="Philosophie">Philosophie</option>
-                        <option value="Anglais">Anglais</option>
-                        <option value="Histoire-Géo">Histoire-Géo</option>
-                        <option value="Education Islamique">Ed. Islamique</option>
-                        <option value="Sport">Sport</option>
-                        <option value="Informatique">Informatique</option>
+                        <option value="اللغة العربية">اللغة العربية</option>
+                        <option value="اللغة الفرنسية">اللغة الفرنسية</option>
+                        <option value="الرياضيات">الرياضيات</option>
+                        <option value="الفيزياء والكيمياء">الفيزياء والكيمياء</option>
+                        <option value="علوم الحياة والأرض">علوم الحياة والأرض</option>
+                        <option value="الفلسفة">الفلسفة</option>
+                        <option value="اللغة الإنجليزية">اللغة الإنجليزية</option>
+                        <option value="التاريخ والجغرافيا">التاريخ والجغرافيا</option>
+                        <option value="التربية الإسلامية">التربية الإسلامية</option>
+                        <option value="التربية البدنية">التربية البدنية</option>
+                        <option value="المعلوميات">المعلوميات</option>
                     </select>
                 </div>
             </div>
 
             <div class="flex flex-wrap gap-2 justify-center pt-2">
-                <button onclick="genererBilanJournalier()" class="bg-amber-500 text-white px-4 py-2 rounded-lg font-black text-[9px] uppercase shadow-md active:scale-95">📊 Jour</button>
-                <button onclick="genererStats('hebdo')" class="bg-emerald-600 text-white px-4 py-2 rounded-lg font-black text-[9px] uppercase shadow-md active:scale-95">📅 Hebdo</button>
-                <button onclick="genererStats('mensuel')" class="bg-indigo-600 text-white px-4 py-2 rounded-lg font-black text-[9px] uppercase shadow-md active:scale-95">🗓️ Mensuel</button>
-                <button onclick="syncDepuisCloud()" class="bg-slate-800 text-white px-4 py-2 rounded-lg font-black text-[9px] uppercase shadow-md active:scale-95">🔄 Sync Cloud</button>
+                <button onclick="genererBilanJournalier()" class="bg-amber-500 text-white px-4 py-2 rounded-lg font-black text-[10px] shadow-md">📊 تقرير اليوم</button>
+                <button onclick="genererStats('hebdo')" class="bg-emerald-600 text-white px-4 py-2 rounded-lg font-black text-[10px] shadow-md">📅 أسبوعي</button>
+                <button onclick="genererStats('mensuel')" class="bg-indigo-600 text-white px-4 py-2 rounded-lg font-black text-[10px] shadow-md">🗓️ شهري</button>
+                <button onclick="syncDepuisCloud()" class="bg-slate-800 text-white px-4 py-2 rounded-lg font-black text-[10px] shadow-md">🔄 تحديث</button>
             </div>
         </div>
 
         <div class="p-4">
             <div id="info-header" class="flex justify-between items-center mb-4 pb-2 border-b-2">
-                <h2 id="view-title" class="text-xs font-black text-indigo-900 uppercase italic underline decoration-amber-500">Appel en direct</h2>
-                <div id="count-badge" class="bg-red-500 text-white px-3 py-1 rounded-full text-[10px] font-bold shadow-lg shadow-red-200">0 ABSENTS</div>
+                <h2 id="view-title" class="text-xs font-black text-indigo-900">تسجيل الغياب</h2>
+                <div id="count-badge" class="bg-red-500 text-white px-3 py-1 rounded-full text-[10px] font-bold">0 غائب</div>
             </div>
 
             <div id="main-display">
@@ -90,25 +90,24 @@
             </div>
         </div>
 
-        <div class="fixed bottom-0 left-0 right-0 p-4 bg-white/90 backdrop-blur-md border-t flex gap-2 max-w-4xl mx-auto no-print z-50">
-            <button onclick="window.print()" class="flex-1 bg-slate-900 text-white py-4 rounded-2xl font-black text-[10px] uppercase shadow-xl active:scale-95 transition-all">🖨️ Imprimer Rapport</button>
-            <button onclick="partagerWhatsApp()" class="flex-1 bg-green-600 text-white py-4 rounded-2xl font-black text-[10px] uppercase shadow-xl active:scale-95 transition-all">💬 WhatsApp</button>
+        <div class="fixed bottom-0 left-0 right-0 p-4 bg-white/90 backdrop-blur-md border-t flex gap-2 max-w-4xl mx-auto no-print">
+            <button onclick="window.print()" class="flex-1 bg-slate-900 text-white py-4 rounded-2xl font-black text-xs uppercase shadow-xl">طباعة التقرير</button>
+            <button onclick="partagerWhatsApp()" class="flex-1 bg-green-600 text-white py-4 rounded-2xl font-black text-xs uppercase shadow-xl">واتساب</button>
         </div>
     </div>
 
     <script>
-        // CONFIGURATION (À REMPLACER PAR VOTRE URL GOOGLE APPS SCRIPT)
         const API_URL = "VOTRE_URL_GOOGLE_SCRIPT_ICI"; 
 
         const donnéesClasses = {
-            "2 BAC SVT": ["El Bouchibi Fatima", "Ez-Zaitouni Wiame", "Hammane Kaoutar", "El Mourabit Mohammed", "Esstitou Omar", "El Hadri Aya", "El Hadri Imane", "El Hadri Aymane", "El Mourabit Houdayfa", "Oudair Siham", "El Haddad Abdelaziz", "El Massari Ahlam", "El Mamoun Mohammed", "Yechou OLYA", "Es-Sebai Mounia", "El Mliles Hatim", "El younsi Doha", "El Meskini Yousra", "El Fayah Reda", "Nass Kassem Oussama", "ELladhi Safae", "Ramli Wafae", "El Mamouni Sajida"],
-            "2 BAC PC": ["El Afia Safae", "ElLdhi Adnan", "El krioui Houdayfa", "Azzouz Mohammed", "Chaffani Rofida"],
-            "2BAC SPC FR": ["El Massari Yaacoub", "El Assaoui Ouidad", "El Hammam Mohammed Anas", "El Faghloumi Mohammed Amine", "Abouali Nada", "El Faghloumi Yassir", "Doha El Rifi", "Merouane Oumaima", "Hanan Chafia", "Ajenoun Ech-Chaibi Adam", "El Mebless Safae", "Er-Rifi Islah", "El Amri Aya", "El Younsi Nada", "El Bakali Hafsa", "El Bakali Mohammed", "Zineb Er-Rafas", "Aalilou Ouidad", "El Belhaissani Adam", "El Afia Farah", "El Meskini Hidaya", "Ech-Chaibi Alae", "Douae Ben hssayne", "El Ghedouani Yahya"],
-            "1BAC SLH-3": ["Ferbal Ayoub", "El Hadri Awatif", "El Khebat Mohammed", "Benerim Remissa", "El Ghoual Aya", "El Khebat Zaid", "Aârim Mohammed Yassine", "El Haddad Abdelkafi", "El Haddar Abderrahmane", "El Berremani Mohammed", "El Abdouni Manal", "El Hassini Douae", "El Jebbari Kholoud", "Ed-Derraz Fatima", "El Massari Mohammed", "Slimane El Abboudi", "Younes El Abboudi", "Ibrahim Wissal", "Oulad Hammidou Mohammed Ben Mohammed", "Aidoune Mohammed Reda", "El Jebbari Maryam", "El Abous Neamat", "Aârim Mohammed", "Kerbal Ahmed", "Aharmim Badr Eddine", "Aharmim Solimane Abdessalam", "Ahremim Fatima Zohra", "El Faghloumi Mohammed", "Oudaber Hafsa", "El Bezrani Mansour", "El Bounsi Nassira", "Boukhalef Aya Abdelaziz", "El Ladehi Mohammed Reda", "Ez-Zaitouni Mohammed", "El Bakali Et-Tahiri Aya", "El Younssfi Douae", "Aârim Rabie", "Es-Sellassi Wail", "El Mamoun Dina", "El Bakali Malak", "El Bakali Mouna", "Jebrone Youssef", "Ed-Derkaoui Younes"],
-            "1BAC LSH-4": ["chouli Mohammed", "Ez-Zaitouni Mohammed", "Stitou Halima", "El Faghloumi Abdelmounaim", "El Aissaoui Mohammed", "El Khayat Mohammed Abdelkhalek", "Ed-Derraz Zineb", "El Jebbari Khadija", "Tohouach Solimane", "El Khayat Marouane", "Ez-Zerhouni Nihad", "El Khayat Rayane", "El Meskini Sabah", "Ajan Ferdaws", "El Mourabit Ihssane", "El Mourabit Hasnaa", "El Haddad Kaoutar", "Mohammed Ali Ez-Zaitouni", "El Amrani Mohammed", "El Kharboufi Mohammed", "El Jebbari Ferdaws", "Safae Ibn Ihssane", "Ferbal Badr Eddine", "El Hajjam Mohammed", "Esh-Shouni Aya", "El Assaoui Dalal", "El Khebat Mohammed Said", "El Haddad Siham", "El Mourabit Awatif", "Es-Sbino Salma", "Ed-Derraz Khawla", "Oudaber Salah Eddine", "El Khebat Adam", "Ajenoun Ech-Chaibi Imane", "Rami Mohammed Amine", "Ed-Derfaoui Mohammed Sami", "Maouloud Yassine", "Dandan Youssef", "Adrebouch Mohammed", "El Kraymi Yassine", "Ed-Derfaoui Alae"]
+            "2 BAC SVT": ["البوشيبي فاطمة", "الزيتوني وئام", "حمان كوثر", "المرابط محمد", "ستيتو عمر", "الهادري آية", "الهادري إيمان", "الهادري أيمن", "المرابط حذيفة", "أودير سهام", "الحداد عبد العزيز", "المساري أحلام", "المأمون محمد", "يشو علياء", "السباعي مونية", "الملليس حاتم", "اليونسي ضحى", "المسكيني يسرا", "الفياض رضا", "ناص قاسم أسامة", "اللضي صفاء", "رملي وفاء", "المأموني ساجدة"],
+            "2 BAC PC": ["العفية صفاء", "اللضي عدنان", "كريوي حذيفة", "عزوز محمد", "شفاني رفيدة"],
+            "2BAC SPC FR": ["المساري يعقوب", "العساوي وداد", "الحمام محمد أنس", "الفغلومي محمد أمين", "أبوعلي ندى", "الفغلومي ياسر", "ضحى الريفي", "مروان أميمة", "حنان شافية", "أجنون الشايبي آدم", "المبلس صفاء", "الريفي إصلاح", "العمري آية", "اليونسي ندى", "البقالي حفصة", "البقالي محمد", "زينب الرفاص", "عليلوا وداد", "بلحيساني آدم", "العفية فرح", "المسكيني هداية", "الشايبي آلاء", "دعاء بن حسين", "الغدواني يحيى"],
+            "1BAC SLH-3": ["فربال أيوب", "الهادري عواطف", "الخياط محمد", "بنريم رميساء", "الغوال آية", "الخياط زيد", "عريم محمد ياسين", "الحداد عبد الكافي", "الحدار عبد الرحمن", "البرماني محمد", "العبدوني منال", "الحسيني دعاء", "الجباري خلود", "الدراز فاطمة", "المساري محمد", "سليمان العبودي", "يونس العبودي", "إبراهيم وصال", "أولاد حميدو محمد بن محمد", "عيدون محمد رضا", "الجباري مريم", "العبوس نعمات", "عريم محمد", "كربال أحمد", "أحرميم بدر الدين", "أحرميم سليمان عبد السلام", "أحرميم فاطمة الزهراء", "الفغلومي محمد", "أودابر حفصة", "البزراني منصور", "البونسي نصيرة", "بوخلف آية عبد العزيز", "اللضي محمد رضا", "الزيتوني محمد", "البقالي الطاهري آية", "اليوسفي دعاء", "عريم ربيع", "السلاسي وائل", "المأمون دينا", "البقالي ملاك", "البقالي منى", "جبرون يوسف", "الدرقاوي يونس"],
+            "1BAC LSH-4": ["شولي محمد", "الزيتوني محمد", "ستيتو حليمة", "الفغلومي عبد المنعم", "العساوي محمد", "الخياط محمد عبد الخالق", "الدراز زينب", "الجباري خديجة", "تحواش سليمان", "الخياط مروان", "الزرهوني نهاد", "الخياط ريان", "المسكيني صباح", "أجان فردوس", "المرابط إحسان", "المرابط حسناء", "الحداد كوثر", "محمد علي الزيتوني", "العمراني محمد", "الخربوفي محمد", "الجباري فردوس", "صفاء ابن إحسان", "فربال بدر الدين", "الحجام محمد", "الشوني آية", "العساوي دلال", "الخياط محمد سعيد", "الحداد سهام", "المرابط عواطف", "السبينو سلمى", "الدراز خولة", "أودابر صلاح الدين", "الخياط آدم", "أجنون الشايبي إيمان", "رامي محمد أمين", "الدرقاوي محمد سامي", "مولود ياسين", "دندان يوسف", "أدربوش محمد", "كريمي ياسين", "الدرقاوي آلاء"]
         };
 
-        let absences = JSON.parse(localStorage.getItem("absences_final_hadri")) || {};
+        let absences = JSON.parse(localStorage.getItem("absences_final_ar")) || {};
 
         function changerContexte() {
             const date = document.getElementById('date-select').value;
@@ -117,14 +116,12 @@
             const mat = document.getElementById('matiere-select').value;
             const idSession = `${date}_${classe}_${heure}_${mat}`;
 
-            // LOGIQUE DES HORAIRES POUR L'HERITAGE
             const créneaux = ["08-09", "09-10", "10-11", "11-12", "14-15", "15-16", "16-17", "17-18"];
             const idx = créneaux.indexOf(heure);
             let absHPrec = [];
             
             if(idx > 0) {
                 const hAvant = créneaux[idx-1];
-                // Vérifier les absents de l'heure juste avant (peu importe la matière)
                 Object.keys(absences).forEach(k => {
                     if(k.startsWith(`${date}_${classe}_${hAvant}`)) {
                         absHPrec = [...new Set([...absHPrec, ...absences[k]])];
@@ -132,7 +129,6 @@
                 });
             }
 
-            // AUTO-COCHE AUTOMATIQUE (Si la session est nouvelle, on hérite des absents)
             if (!absences[idSession] && absHPrec.length > 0) {
                 absences[idSession] = [...absHPrec];
             }
@@ -143,7 +139,6 @@
         function afficherListe(idSession, absHPrec) {
             const classe = document.getElementById('classe-select').value;
             const body = document.getElementById('student-list');
-            document.getElementById('view-title').innerText = "Appel : " + classe;
             body.innerHTML = "";
 
             donnéesClasses[classe].forEach(nom => {
@@ -152,33 +147,29 @@
 
                 body.innerHTML += `
                     <tr class="border-b transition-all ${etaitAbsentHPrec && !estAbsent ? 'bg-orange-50' : (estAbsent ? 'bg-red-50' : '')}">
-                        <td class="p-4">
-                            <div class="font-bold text-sm text-slate-800">${nom}</div>
-                            ${etaitAbsentHPrec ? '<div class="text-[8px] font-black text-orange-600 uppercase mt-0.5 tracking-tighter">⚠️ Absent à l\'heure précédente</div>' : ''}
-                        </td>
                         <td class="p-4 text-right">
+                            <div class="font-bold text-sm text-slate-800">${nom}</div>
+                            ${etaitAbsentHPrec ? '<div class="text-[8px] font-black text-orange-600 uppercase mt-0.5">⚠️ كان غائباً الحصة الماضية</div>' : ''}
+                        </td>
+                        <td class="p-4 text-left">
                             <button onclick="toggleAbsence(this, '${idSession}', '${nom}')" 
-                                class="w-24 py-2.5 rounded-xl text-[10px] font-black uppercase transition-transform active:scale-90 ${estAbsent ? 'bg-red-500 text-white shadow-md' : 'bg-slate-100 text-slate-400'}">
-                                ${estAbsent ? 'Absent' : 'Présent'}
+                                class="w-24 py-2.5 rounded-xl text-[10px] font-black transition-transform active:scale-90 ${estAbsent ? 'bg-red-500 text-white shadow-md' : 'bg-slate-100 text-slate-400'}">
+                                ${estAbsent ? 'غائب' : 'حاضر'}
                             </button>
                         </td>
                     </tr>`;
             });
-            document.getElementById('count-badge').innerText = (absences[idSession]?.length || 0) + " ABSENTS";
+            document.getElementById('count-badge').innerText = (absences[idSession]?.length || 0) + " غائب";
         }
 
         function toggleAbsence(btn, id, nom) {
             if(!absences[id]) absences[id] = [];
-            if(!absences[id].includes(nom)) {
-                absences[id].push(nom);
-            } else {
-                absences[id] = absences[id].filter(n => n !== nom);
-            }
+            if(!absences[id].includes(nom)) absences[id].push(nom);
+            else absences[id] = absences[id].filter(n => n !== nom);
             
-            localStorage.setItem("absences_final_hadri", JSON.stringify(absences));
+            localStorage.setItem("absences_final_ar", JSON.stringify(absences));
             changerContexte();
 
-            // Cloud Sync
             if(!API_URL.includes("VOTRE_URL")) {
                 const [d, cl, h, m] = id.split('_');
                 fetch(API_URL, { method: "POST", mode: "no-cors", body: JSON.stringify({
@@ -189,7 +180,6 @@
 
         function genererBilanJournalier() {
             const date = document.getElementById('date-select').value;
-            document.getElementById('view-title').innerText = "Bilan du " + date;
             const body = document.getElementById('student-list');
             let html = "";
             let total = 0;
@@ -198,46 +188,29 @@
                 const parts = id.split('_');
                 total += absences[id].length;
                 html += `
-                    <tr class="bg-indigo-900 text-white font-bold text-[9px] uppercase tracking-widest"><td colspan="2" class="p-2">${parts[2]} | ${parts[1]} (${parts[3]})</td></tr>
-                    <tr><td colspan="2" class="p-4 text-xs font-bold text-red-600 bg-slate-50 leading-relaxed">${absences[id].length > 0 ? absences[id].join(', ') : 'Aucun absent'}</td></tr>
+                    <tr class="bg-indigo-900 text-white font-bold text-[9px] uppercase"><td colspan="2" class="p-2">${parts[2]} | ${parts[1]} (${parts[3]})</td></tr>
+                    <tr><td colspan="2" class="p-4 text-xs font-bold text-red-600 bg-slate-50">${absences[id].length > 0 ? absences[id].join('، ') : 'لا يوجد غياب'}</td></tr>
                 `;
             });
-            body.innerHTML = html || "<tr><td class='p-10 text-center text-slate-400 italic'>Aucun appel enregistré.</td></tr>";
-            document.getElementById('count-badge').innerText = "TOTAL : " + total;
+            body.innerHTML = html || "<tr><td class='p-10 text-center text-slate-400'>لا توجد بيانات مسجلة لهذا اليوم</td></tr>";
+            document.getElementById('count-badge').innerText = "المجموع: " + total;
         }
 
         function genererStats(periode) {
-            document.getElementById('view-title').innerText = "Statistiques " + periode;
             const body = document.getElementById('student-list');
             let stats = {};
             Object.values(absences).forEach(l => l.forEach(n => stats[n] = (stats[n] || 0) + 1));
-            
             let sorted = Object.entries(stats).sort((a,b) => b[1] - a[1]);
-            let html = `<tr class="bg-slate-800 text-white text-[9px] uppercase font-black"><td class="p-3">Nom de l'élève</td><td class="p-3 text-right">Nb Absences</td></tr>`;
+            let html = `<tr class="bg-slate-800 text-white text-[10px] font-black"><td class="p-3 text-right">اسم التلميذ</td><td class="p-3 text-left">عدد مرات الغياب</td></tr>`;
             sorted.forEach(([n, nb]) => {
-                html += `<tr class="border-b"><td class="p-3 text-xs font-bold">${n}</td><td class="p-3 text-right text-red-600 font-black">${nb}</td></tr>`;
+                html += `<tr class="border-b text-right"><td class="p-3 text-xs font-bold">${n}</td><td class="p-3 text-left text-red-600 font-black">${nb}</td></tr>`;
             });
             body.innerHTML = html;
         }
 
-        async function syncDepuisCloud() {
-            if(API_URL.includes("VOTRE_URL")) return alert("Configurez l'URL Cloud avant.");
-            const res = await fetch(API_URL);
-            const data = await res.json();
-            absences = {};
-            data.slice(1).forEach(r => {
-                if(r[6] === "Absent") {
-                    if(!absences[r[0]]) absences[r[0]] = [];
-                    if(!absences[r[0]].includes(r[5])) absences[r[0]].push(r[5]);
-                }
-            });
-            localStorage.setItem("absences_final_hadri", JSON.stringify(absences));
-            changerContexte();
-        }
-
         function partagerWhatsApp() {
             const date = document.getElementById('date-select').value;
-            const msg = `*EL HADRI - Rapport*\nDate: ${date}\n${document.getElementById('count-badge').innerText}`;
+            const msg = `*ثانوية الهادري*\nتقرير غياب يوم: ${date}\n${document.getElementById('count-badge').innerText}`;
             window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`);
         }
 
